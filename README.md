@@ -10,7 +10,47 @@
   *TSUP - Usaremos por ser mais performatico*
     sript: `"build": "tsup src --out-dir build",`
 
-    - Subir para github
+    - Subir para githubf
+
+    - render.com
+    - fly.io
+    - Railway.app
+
+  *SUPORTE AO DB POSTGRES*
+    Criar uma nova variavel ambiente para que use sqlite em desenvolvimento e pg e produção
+    `DATABASE_CLIENT=sqlite`
+
+    ~~~ts srv/database.ts
+      export const config: Knex.Config = {
+        client: env.DATABASE_CLIENT,
+        connection:
+          env.DATABASE_CLIENT === 'sqlite'
+            ? { filename: env.DATABASE_URL }
+            : env.DATABASE_CLIENT,
+        ...
+      }
+    ~~~
+
+    - Add ao package.json a versão do node a ser ultilizada em produção
+
+      ~~~json srv/database.ts
+        "engines": {
+         "node": ">=18"
+        }
+      ~~~
+    
+    - PORT
+      O render passa a porta em formato de string e nossa aplicação precisa recever como numero,
+      Vamos fazer uma anterção no schema usando o `z.cuerce`, desta forma indenpendente do que tipo de dados passado o 
+      zod irá tranforma em number
+
+      ~~~ts
+        const envSchema = z.object({
+          ...
+          PORT: z.coerce.number().default(3332),
+        })
+      ~~~
+
   
 
 **TEST AUTOMATIZADOS**
