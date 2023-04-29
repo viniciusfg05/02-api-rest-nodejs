@@ -1,0 +1,9 @@
+# Databse
+db/*.db
+
+# Dependencies
+node_modules
+
+#Envirament
+.env
+.env.test
