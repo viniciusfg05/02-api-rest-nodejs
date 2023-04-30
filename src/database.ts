@@ -6,7 +6,7 @@ export const config: Knex.Config = {
   connection:
     env.DATABASE_CLIENT === 'sqlite'
       ? { filename: env.DATABASE_URL }
-      : env.DATABASE_CLIENT,
+      : env.DATABASE_URL,
   useNullAsDefault: true, // sqlite não suporta valores padroes e precisamos passar que os valores por padrao, será nulo
   migrations: {
     extension: 'ts',
