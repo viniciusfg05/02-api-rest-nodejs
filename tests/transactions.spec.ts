@@ -7,7 +7,7 @@ beforeAll(async () => {
   // Inicializa o servidor atens de executar os tests
   await app.ready();
 });
-
+//console.log
 afterAll(async () => {
   await app.close();
 });
